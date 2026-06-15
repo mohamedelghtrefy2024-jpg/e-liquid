@@ -1,0 +1,13 @@
+{
+  "name": "epp-calculator",
+  "version": "1.0.0",
+  "description": "EPP Calculator — E-Liquid Mixing Calculator (modular ES modules build)",
+  "private": true,
+  "scripts": {
+    "build": "node build/merge.js",
+    "test": "node build/smoke-test.js && node build/merge.js && node build/smoke-test-merged.js"
+  },
+  "devDependencies": {
+    "jsdom": "^29.1.1"
+  }
+}

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22><circle cx=%2220%22 cy=%2220%22 r=%2219%22 fill=%22%23111827%22 stroke=%22%233b82f6%22 stroke-width=%221.5%22/><rect x=%2217%22 y=%229%22 width=%226%22 height=%2216%22 rx=%222%22 fill=%22%233b82f6%22/><rect x=%2219%22 y=%226%22 width=%222%22 height=%224%22 rx=%221%22 fill=%22%2394a3b8%22/><circle cx=%2213%22 cy=%2227%22 r=%222.4%22 fill=%22%233b82f6%22 opacity=%220.55%22/><circle cx=%2220%22 cy=%2230%22 r=%223.2%22 fill=%22%2310b981%22 opacity=%220.5%22/><circle cx=%2227%22 cy=%2227%22 r=%222.4%22 fill=%22%2338bdf8%22 opacity=%220.55%22/></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="حاسبة EPP — حاسبة خلط السوائل الإلكترونية الاحترافية | EPP Calculator — E-Liquid Mixing Calculator" />
+    <title>حاسبة EPP — E-Liquid Calculator</title>
+    <style>
+:root{color-scheme:dark}*{box-sizing:border-box}html,body,#root{margin:0;padding:0;min-height:100%}body{background:#0b1120}
+.emoji-cat-bar::-webkit-scrollbar{display:none}
+@keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+@media print{
+  .no-print{display:none!important}
+  body{background:#fff;color:#000}
+  .print-section{background:#fff;color:#000;padding:20px}
+}
+@media(max-width:640px){
+  .grid-2col{grid-template-columns:1fr!important}
+  .grid-main{grid-template-columns:1fr!important}
+  .tab-bar button{padding:6px 8px!important;font-size:11px!important}
+  .preset-btn{padding:5px 10px!important;font-size:12px!important}
+  .flavor-grid{grid-template-columns:1fr 1fr!important}
+  .flavor-grid-3{grid-template-columns:1fr 1fr!important}
+}
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- EPP v6 CDN libs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/3.2.4/dexie.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <!-- App entry point — loads vendor React bundle + all app modules via ES modules -->
+    <script type="module" src="./js/App.js"></script>
+  </body>
+</html>
