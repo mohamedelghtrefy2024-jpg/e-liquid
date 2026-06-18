@@ -1,0 +1,91 @@
+[
+  {
+    "name": "case1_original_user_recipe",
+    "qdInput": {
+      "targetVolumeMl": 1000, "pgRatio": 0.3, "nicCarrierPgRatio": 1,
+      "targetNicStrength": 3, "nicStockStrength": 100, "nicType": "freebase",
+      "flavors": [
+        {"id": 1, "name": "Strawberry", "mfr": "FlavorArt", "pct": 9.8, "pgRatio": 1, "costPerMl": 8},
+        {"id": 2, "name": "Fresh Cream", "mfr": "FlavorArt", "pct": 4.2, "pgRatio": 1, "costPerMl": 3.333333}
+      ],
+      "waterPct": 0, "alcoholPct": 0,
+      "pgCostPerMl": 0.35, "vgCostPerMl": 0.45, "nicCostPerMl": 11.666667, "bottleCost": 1.5,
+      "customPgDensity": 1.036, "customVgDensity": 1.261, "customFlavDensities": {},
+      "customNicDensity": null, "deviceType": "mtl"
+    }
+  },
+  {
+    "name": "case2_high_vg_nic_salt",
+    "qdInput": {
+      "targetVolumeMl": 500, "pgRatio": 0.2, "nicCarrierPgRatio": 0,
+      "targetNicStrength": 35, "nicStockStrength": 250, "nicType": "nic_salt_benz",
+      "flavors": [
+        {"id": 1, "name": "Mint", "mfr": "TPA", "pct": 5, "pgRatio": 0, "costPerMl": 5}
+      ],
+      "waterPct": 0, "alcoholPct": 0,
+      "pgCostPerMl": 0.35, "vgCostPerMl": 0.45, "nicCostPerMl": 20, "bottleCost": 1.5,
+      "customPgDensity": 1.036, "customVgDensity": 1.261, "customFlavDensities": {},
+      "customNicDensity": null, "deviceType": "pod"
+    }
+  },
+  {
+    "name": "case3_50_50_with_water_alcohol",
+    "qdInput": {
+      "targetVolumeMl": 120, "pgRatio": 0.5, "nicCarrierPgRatio": 0.5,
+      "targetNicStrength": 12, "nicStockStrength": 72, "nicType": "freebase",
+      "flavors": [
+        {"id": 1, "name": "Custard", "mfr": "Inawera", "pct": 3, "pgRatio": 0.7, "costPerMl": 4},
+        {"id": 2, "name": "Vanilla", "mfr": "Capella", "pct": 2, "pgRatio": 0.3, "costPerMl": 2},
+        {"id": 3, "name": "Caramel", "mfr": "FlavorArt", "pct": 1.5, "pgRatio": 1, "costPerMl": 6}
+      ],
+      "waterPct": 1, "alcoholPct": 0.5,
+      "pgCostPerMl": 0.35, "vgCostPerMl": 0.45, "nicCostPerMl": 8, "bottleCost": 1.5,
+      "customPgDensity": 1.036, "customVgDensity": 1.261, "customFlavDensities": {},
+      "customNicDensity": null, "deviceType": "rda"
+    }
+  },
+  {
+    "name": "case4_100pg_no_flavors",
+    "qdInput": {
+      "targetVolumeMl": 60, "pgRatio": 1.0, "nicCarrierPgRatio": 1,
+      "targetNicStrength": 6, "nicStockStrength": 100, "nicType": "freebase",
+      "flavors": [],
+      "waterPct": 0, "alcoholPct": 0,
+      "pgCostPerMl": 0.35, "vgCostPerMl": 0.45, "nicCostPerMl": 11.666667, "bottleCost": 1.5,
+      "customPgDensity": 1.036, "customVgDensity": 1.261, "customFlavDensities": {},
+      "customNicDensity": null, "deviceType": "mtl"
+    }
+  },
+  {
+    "name": "case5_custom_densities_many_flavors",
+    "qdInput": {
+      "targetVolumeMl": 250, "pgRatio": 0.4, "nicCarrierPgRatio": 0.6,
+      "targetNicStrength": 0, "nicStockStrength": 50, "nicType": "freebase",
+      "flavors": [
+        {"id": 1, "name": "F1", "mfr": "M1", "pct": 2, "pgRatio": 1, "costPerMl": 1},
+        {"id": 2, "name": "F2", "mfr": "M2", "pct": 2, "pgRatio": 0, "costPerMl": 1},
+        {"id": 3, "name": "F3", "mfr": "M3", "pct": 2, "pgRatio": 0.5, "costPerMl": 1},
+        {"id": 4, "name": "F4", "mfr": "M4", "pct": 1, "pgRatio": 0.25, "costPerMl": 1},
+        {"id": 5, "name": "F5", "mfr": "M5", "pct": 1, "pgRatio": 0.75, "costPerMl": 1}
+      ],
+      "waterPct": 0, "alcoholPct": 0,
+      "pgCostPerMl": 0.4, "vgCostPerMl": 0.5, "nicCostPerMl": 9, "bottleCost": 2,
+      "customPgDensity": 1.038, "customVgDensity": 1.258, "customFlavDensities": {"1": 1.05, "3": 1.1},
+      "customNicDensity": 1.02, "deviceType": "mtl"
+    }
+  },
+  {
+    "name": "case6_deficit_scenario_overloaded_flavors",
+    "qdInput": {
+      "targetVolumeMl": 30, "pgRatio": 0.3, "nicCarrierPgRatio": 1,
+      "targetNicStrength": 3, "nicStockStrength": 100, "nicType": "freebase",
+      "flavors": [
+        {"id": 1, "name": "BigFlavor", "mfr": "X", "pct": 25, "pgRatio": 1, "costPerMl": 5}
+      ],
+      "waterPct": 0, "alcoholPct": 0,
+      "pgCostPerMl": 0.35, "vgCostPerMl": 0.45, "nicCostPerMl": 11.666667, "bottleCost": 1.5,
+      "customPgDensity": 1.036, "customVgDensity": 1.261, "customFlavDensities": {},
+      "customNicDensity": null, "deviceType": "mtl"
+    }
+  }
+]
