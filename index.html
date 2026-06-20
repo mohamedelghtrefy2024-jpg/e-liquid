@@ -1132,57 +1132,6 @@ const DEFAULT_FLAVORS = [
  * @param {Function} clearDraft - من useDraft — لمسح المسودة بعد الحفظ
  * @returns كل state + setters + handlers الخاصة بالوصفة
  */
-function useRecipeState(lang, t, clearDraft) {
-  // ── Core recipe inputs ──────────────────────────────────────────────────────
-  const [volPreset,    setVolPreset]    = J.useState(100);
-  const [customVol,    setCustomVol]    = J.useState(100);
-  const [pgRatio,      setPgRatio]      = J.useState(0.3);
-  const [pgPreset,     setPgPreset]     = J.useState("30/70");
-  const [targetNic,    setTargetNic]    = J.useState(3);
-  const [stockStr,     setStockStr]     = J.useState(72);
-  const [nicType,      setNicType]      = J.useState("freebase");
-  const [nicCarrierPg, setNicCarrierPg] = J.useState(1);
-  const [waterPct,     setWaterPct]     = J.useState(0);
-  const [alcPct,       setAlcPct]       = J.useState(0);
-
-  // ── Cost inputs ─────────────────────────────────────────────────────────────
-  const [pgBottlePrice,  setPgBottlePrice]  = J.useState(60);
-  const [pgBottleSize,   setPgBottleSize]   = J.useState(1000);
-  const [vgBottlePrice,  setVgBottlePrice]  = J.useState(80);
-  const [vgBottleSize,   setVgBottleSize]   = J.useState(1000);
-  const [nicBottlePrice, setNicBottlePrice] = J.useState(350);
-  const [nicBottleSize,  setNicBottleSize]  = J.useState(30);
-  const [bottleCost,     setBottleCost]     = J.useState(5);
-
-  // ── Derived cost-per-ml ─────────────────────────────────────────────────────
-  const pgCost  = pgBottleSize  > 0 ? pgBottlePrice  / pgBottleSize  : 0;
-  const vgCost  = vgBottleSize  > 0 ? vgBottlePrice  / vgBottleSize  : 0;
-  const nicCost = nicBottleSize > 0 ? nicBottlePrice / nicBottleSize : 0;
-
-  // ── Flavors & display ───────────────────────────────────────────────────────
-  const [flavors,        setFlavors]        = J.useState(DEFAULT_FLAVORS);
-  const [brandCatalogFor, setBrandCatalogFor] = J.useState(null);
-  // SESSION-8 CRITICAL-20: استعادة display من التخزين عند التحميل
-  const [display,        setDisplay]        = J.useState(()=>storageService.get("display","volume",true)||"volume");
-  const [customPgDens,   setCustomPgDens]   = J.useState(ze.PG);
-  const [customVgDens,   setCustomVgDens]   = J.useState(ze.VG);
-  const [customFlavDens, setCustomFlavDens] = J.useState({});
-  // ── SESSION-8: Custom nic density override & Device type ────────────────────
-  const [customNicDens, setCustomNicDens] = J.useState(null); // null = use default from NIC_SALT_DENSITIES
-  const [deviceType,    setDeviceType]    = J.useState("mtl");
-
-  // ── Steeping & metadata ─────────────────────────────────────────────────────
-  const [steepDays,    setSteepDays]    = J.useState(0);
-  const [mixedOn,      setMixedOn]      = J.useState("");
-  const [recipeName,   setRecipeName]   = J.useState("");
-
-  // ── Flavor helpers ──────────────────────────────────────────────────────────
-  // CRITICAL-16: J.useCallback — هذه الدوال تُمرَّر كـ onClick/onChange مباشرة
-  // لمكوّنات مُغلَّفة بـ J.memo (He/ao/qt في common.js). بدون useCallback كانت
-  // تُعاد كتابتها (هوية جديدة) في كل تصيير للـ hook، فيفشل J.memo في تجنّب
-  // إعادة التصيير حتى لو لم تتغيّر أي بيانات فعلية. setFlavors هو setState خام
-  // من React (هويته مستقرة دوماً بالتصميم) فلا حاجة لإدراجه كـ dependency.
-  
 // ─── BRAND CATALOG MODAL ─────────────────────────────────────────────────────
 function BrandCatalogModal({brandCatalogFor,setBrandCatalogFor,updateFlavor,n,S,lang}){
   if(!brandCatalogFor)return null;
@@ -1272,6 +1221,58 @@ function BrandCatalogModal({brandCatalogFor,setBrandCatalogFor,updateFlavor,n,S,
     ]})
   });
 }
+
+function useRecipeState(lang, t, clearDraft) {
+  // ── Core recipe inputs ──────────────────────────────────────────────────────
+  const [volPreset,    setVolPreset]    = J.useState(100);
+  const [customVol,    setCustomVol]    = J.useState(100);
+  const [pgRatio,      setPgRatio]      = J.useState(0.3);
+  const [pgPreset,     setPgPreset]     = J.useState("30/70");
+  const [targetNic,    setTargetNic]    = J.useState(3);
+  const [stockStr,     setStockStr]     = J.useState(72);
+  const [nicType,      setNicType]      = J.useState("freebase");
+  const [nicCarrierPg, setNicCarrierPg] = J.useState(1);
+  const [waterPct,     setWaterPct]     = J.useState(0);
+  const [alcPct,       setAlcPct]       = J.useState(0);
+
+  // ── Cost inputs ─────────────────────────────────────────────────────────────
+  const [pgBottlePrice,  setPgBottlePrice]  = J.useState(60);
+  const [pgBottleSize,   setPgBottleSize]   = J.useState(1000);
+  const [vgBottlePrice,  setVgBottlePrice]  = J.useState(80);
+  const [vgBottleSize,   setVgBottleSize]   = J.useState(1000);
+  const [nicBottlePrice, setNicBottlePrice] = J.useState(350);
+  const [nicBottleSize,  setNicBottleSize]  = J.useState(30);
+  const [bottleCost,     setBottleCost]     = J.useState(5);
+
+  // ── Derived cost-per-ml ─────────────────────────────────────────────────────
+  const pgCost  = pgBottleSize  > 0 ? pgBottlePrice  / pgBottleSize  : 0;
+  const vgCost  = vgBottleSize  > 0 ? vgBottlePrice  / vgBottleSize  : 0;
+  const nicCost = nicBottleSize > 0 ? nicBottlePrice / nicBottleSize : 0;
+
+  // ── Flavors & display ───────────────────────────────────────────────────────
+  const [flavors,        setFlavors]        = J.useState(DEFAULT_FLAVORS);
+  const [brandCatalogFor, setBrandCatalogFor] = J.useState(null);
+  // SESSION-8 CRITICAL-20: استعادة display من التخزين عند التحميل
+  const [display,        setDisplay]        = J.useState(()=>storageService.get("display","volume",true)||"volume");
+  const [customPgDens,   setCustomPgDens]   = J.useState(ze.PG);
+  const [customVgDens,   setCustomVgDens]   = J.useState(ze.VG);
+  const [customFlavDens, setCustomFlavDens] = J.useState({});
+  // ── SESSION-8: Custom nic density override & Device type ────────────────────
+  const [customNicDens, setCustomNicDens] = J.useState(null); // null = use default from NIC_SALT_DENSITIES
+  const [deviceType,    setDeviceType]    = J.useState("mtl");
+
+  // ── Steeping & metadata ─────────────────────────────────────────────────────
+  const [steepDays,    setSteepDays]    = J.useState(0);
+  const [mixedOn,      setMixedOn]      = J.useState("");
+  const [recipeName,   setRecipeName]   = J.useState("");
+
+  // ── Flavor helpers ──────────────────────────────────────────────────────────
+  // CRITICAL-16: J.useCallback — هذه الدوال تُمرَّر كـ onClick/onChange مباشرة
+  // لمكوّنات مُغلَّفة بـ J.memo (He/ao/qt في common.js). بدون useCallback كانت
+  // تُعاد كتابتها (هوية جديدة) في كل تصيير للـ hook، فيفشل J.memo في تجنّب
+  // إعادة التصيير حتى لو لم تتغيّر أي بيانات فعلية. setFlavors هو setState خام
+  // من React (هويته مستقرة دوماً بالتصميم) فلا حاجة لإدراجه كـ dependency.
+  
 
 const addFlavor = J.useCallback(() => setFlavors(w => [
     ...w,
