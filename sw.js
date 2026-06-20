@@ -2,8 +2,8 @@
 // Cache-first strategy for static assets, network-first for dynamic requests.
 // Enables offline usage and fast repeat loads.
 
-const CACHE_NAME = 'epp-calc-v2';
-const CACHE_VERSION = 2;
+const CACHE_NAME = 'epp-calc-v3';
+const CACHE_VERSION = 3;
 
 // Static assets to pre-cache on install
 // ملاحظة: الملف الفعلي الذي يشغّل التطبيق هو EPP-Calculator-merged.html (راجع start.bat)
