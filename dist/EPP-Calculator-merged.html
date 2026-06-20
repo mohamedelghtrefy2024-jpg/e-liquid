@@ -414,6 +414,24 @@ function getBrandBasePrices(brand) {
   return result;
 }
 
+// ─── BRAND CATALOG — CATEGORY → EMOJI MAP ───────────────────────────────────
+// كل نكهة من كتالوج الشركة (FlavorArt إلخ) مرتبطة بصنف (cat) في BRAND_DB.
+// عند اختيار المستخدم نكهة من الكتالوج، نربطها تلقائياً بإيموجي يمثّل صنفها
+// بدل ما تفضل بالإيموجي الافتراضي (🍓) أياً كان نوع النكهة الفعلي.
+const BRAND_CATEGORY_EMOJI = {
+  Fruit:    "🍓",
+  Cream:    "🍦",
+  Dessert:  "🍰",
+  Bakery:   "🥐",
+  Beverage: "🥤",
+  Tobacco:  "🍂",
+  Mint:     "❄️",
+  Special:  "✨",
+};
+function getBrandFlavorEmoji(cat) {
+  return BRAND_CATEGORY_EMOJI[cat] || BRAND_CATEGORY_EMOJI.Special;
+}
+
 // ─── COLORS — Dynamic Theme System ──────────────────────────────────────────
 const DARK_THEME={bg:"#0b1120",surface:"#111827",card:"#1a2235",border:"#1e2d45",accent:"#3b82f6",accentSoft:"#1d3a6e",green:"#10b981",greenSoft:"#063827",yellow:"#f59e0b",yellowSoft:"#3d2a00",red:"#ef4444",redSoft:"#3d0f0f",text:"#e2e8f0",muted:"#64748b",dimmed:"#94a3b8",nic:"#f472b6",nicSoft:"#3d1a30",pg:"#3b82f6",pgSoft:"#1d3a6e",vg:"#10b981",vgSoft:"#063827",flavor:"#fb923c",flavorSoft:"#3d2410",water:"#38bdf8",waterSoft:"#0c2d3d",alcohol:"#a78bfa",alcoholSoft:"#2a1f4d"};
 const LIGHT_THEME={bg:"#f0f4f8",surface:"#f8fafc",card:"#ffffff",border:"#cbd5e1",accent:"#2563eb",accentSoft:"#dbeafe",green:"#059669",greenSoft:"#d1fae5",yellow:"#d97706",yellowSoft:"#fef3c7",red:"#dc2626",redSoft:"#fee2e2",text:"#1e293b",muted:"#94a3b8",dimmed:"#475569",nic:"#db2777",nicSoft:"#fce7f3",pg:"#2563eb",pgSoft:"#dbeafe",vg:"#059669",vgSoft:"#d1fae5",flavor:"#d97706",flavorSoft:"#fef3c7",water:"#0284c7",waterSoft:"#e0f2fe",alcohol:"#7c3aed",alcoholSoft:"#ede9fe"};
@@ -1157,6 +1175,7 @@ function BrandCatalogModal({brandCatalogFor,setBrandCatalogFor,updateFlavor,n,S,
     updateFlavor(flavorId,"mfr",mfr);
     updateFlavor(flavorId,"flavorBottlePrice",entry.pr);
     updateFlavor(flavorId,"flavorBottleSize",entry.sz);
+    updateFlavor(flavorId,"emoji",getBrandFlavorEmoji(entry.cat));
     setBrandCatalogFor(null);
   }
   function saveOverrides(ov){setOverrides(ov);try{localStorage.setItem(storageKey,JSON.stringify(ov));}catch{}}
@@ -1202,7 +1221,7 @@ function BrandCatalogModal({brandCatalogFor,setBrandCatalogFor,updateFlavor,n,S,
               onMouseLeave:editMode?undefined:ev=>ev.currentTarget.style.background="transparent",
               children:[
                 p.jsxs("div",{style:{flex:1,minWidth:0},children:[
-                  p.jsxs("div",{style:{fontSize:13,fontWeight:600,color:S.text,display:"flex",alignItems:"center",gap:4,flexWrap:"wrap"},children:[sanitizeText(e.n),condBadge(e.cond)]}),
+                  p.jsxs("div",{style:{fontSize:13,fontWeight:600,color:S.text,display:"flex",alignItems:"center",gap:4,flexWrap:"wrap"},children:[getBrandFlavorEmoji(e.cat)+" "+sanitizeText(e.n),condBadge(e.cond)]}),
                   p.jsxs("div",{style:{fontSize:11,color:S.muted,marginTop:2},children:[
                     e.cat,
                     editMode?p.jsxs("span",{style:{marginInlineStart:8},children:[
