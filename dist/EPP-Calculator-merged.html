@@ -2315,7 +2315,7 @@ function exportPDF({res, recipeName, targetMl, t, lang, fmtEGP,
 <html lang="${lang}" dir="${dir}">
 <head>
   <meta charset="UTF-8"/>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; font-src 'self' data:; manifest-src 'self'; worker-src 'self'"/>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; font-src 'self' data:; manifest-src 'self'; worker-src 'self'"/>
   <title>${safeRecipeName} — EPP Calculator</title>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
