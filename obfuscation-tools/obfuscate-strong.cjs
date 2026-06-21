@@ -73,7 +73,7 @@ const result = JavaScriptObfuscator.obfuscate(source, {
   renameProperties         : false,
 
   // ── Self-Defending ────────────────────────────────────────────────────────
-  selfDefending : true,
+  selfDefending : false,  // ← disabled: causes eval() which is blocked by CSP
 
   // ── Numbers ───────────────────────────────────────────────────────────────
   numbersToExpressions : true,
