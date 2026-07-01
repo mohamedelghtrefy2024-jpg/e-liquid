@@ -6,11 +6,10 @@ const CACHE_NAME = 'epp-calc-v6';
 const CACHE_VERSION = 5;
 
 // Static assets to pre-cache on install
-// ملاحظة: الملف الفعلي الذي يشغّل التطبيق هو EPP-Calculator-merged.html (راجع start.bat)
-// لا يوجد index.html في هذا المشروع — كان مذكوراً بالغلط هنا في نسخة سابقة.
+// ملاحظة: على GitHub Pages الملف مرفوع باسم index.html (راجع الديبلويمنت الفعلي)
 const PRECACHE_ASSETS = [
   './',
-  './EPP-Calculator-merged.html',
+  './index.html',
   './manifest.json',
   './icons/icon-192.png',
   './icons/icon-512.png',
@@ -98,7 +97,7 @@ self.addEventListener('fetch', (event) => {
           .catch(() => {
             // Offline fallback — return the actual app shell for navigation requests
             if (request.mode === 'navigate') {
-              return caches.match('./EPP-Calculator-merged.html').then(cached => cached || _offlinePage());
+              return caches.match('./index.html').then(cached => cached || _offlinePage());
             }
             return new Response('Offline', { status: 503, statusText: 'Service Unavailable' });
           });
